@@ -13,10 +13,13 @@
 <style scoped>
 header {
   align-items: center;
+  background: #FFFFFF;
+  box-shadow: 0 2px 5px 0 #595459;
   display: flex;
   flex-direction: row;
   height: 75px;
   justify-content: center;
+  margin-bottom: 20px;
   width: 100%;
 }
 

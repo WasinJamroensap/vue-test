@@ -11,7 +11,7 @@ export default {
 </script>
 
 <style>
-* {
+a, button, div {
   box-sizing: border-box;
 }
 

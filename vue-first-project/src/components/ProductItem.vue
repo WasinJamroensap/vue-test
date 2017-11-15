@@ -3,18 +3,18 @@
     <img src="https://naidin-da010.firebaseapp.com/static/imgs/1.jpg" />
     <div>
       <div>
-        <div class="text">{{ name }}</div>
+        <div class="text">{{ product.name }}</div>
         <hr/>
-        <div class="text">{{ price }} {{ currency }}</div>
+        <div class="text">{{ product.price }} {{ product.currency }}</div>
       </div>
-      <button class="text">Add to cart</button>
+      <button class="text" @click="addToCart(product)">Add to cart</button>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  props: ['currency', 'name', 'price']
+  props: ['addToCart', 'product']
 }
 </script>
 
