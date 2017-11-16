@@ -1,6 +1,6 @@
 <template>
   <div class="contianer">
-    <img src="https://naidin-da010.firebaseapp.com/static/imgs/1.jpg" />
+    <img :src="product.picture" />
     <div>
       <div>
         <div class="text">{{ product.name }}</div>

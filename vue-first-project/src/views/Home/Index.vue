@@ -20,14 +20,15 @@
         <div class="product-container">
           <div :key="product.id" v-for="product in products" class="card">
             <product-item
-              :addToCart="addToCart"
-              :product="product"/>
+              :product="product"
+              :addToCart="addToCart"/>
           </div>
         </div>
       </div>
       <div class="body-right">
         <cart
-          :cart="cart"/>
+          :cart="cart"
+          :removeFromCart="removeFromCart"/>
       </div>
     </div>
   </div>
@@ -47,23 +48,15 @@ export default {
   data () {
     return {
       products: [
-        {id: 1, name: `Harry Potter and the Philosopher's Stone`, price: 100, currency: 'บาท'},
-        {id: 2, name: `Harry Potter and the Chamber of Secrets`, price: 100, currency: 'บาท'},
-        {id: 3, name: `Harry Potter and the Prisoner of Azkaban`, price: 100, currency: 'บาท'},
-        {id: 4, name: `Harry Potter and the Goblet of Fire`, price: 100, currency: 'บาท'},
-        {id: 5, name: `Harry Potter and the Order of the Phoenix`, price: 100, currency: 'บาท'},
-        {id: 6, name: `Harry Potter and the Half-Blood Prince`, price: 100, currency: 'บาท'},
-        {id: 7, name: `Harry Potter and the Deathly Hallows`, price: 100, currency: 'บาท'}
+        {id: 1, name: `Harry Potter and the Philosopher's Stone`, price: 100, currency: 'บาท', picture: 'static/pictures/HarryBook1.jpg'},
+        {id: 2, name: `Harry Potter and the Chamber of Secrets`, price: 100, currency: 'บาท', picture: 'static/pictures/HarryBook2.jpg'},
+        {id: 3, name: `Harry Potter and the Prisoner of Azkaban`, price: 100, currency: 'บาท', picture: 'static/pictures/HarryBook3.jpg'},
+        {id: 4, name: `Harry Potter and the Goblet of Fire`, price: 100, currency: 'บาท', picture: 'static/pictures/HarryBook4.jpg'},
+        {id: 5, name: `Harry Potter and the Order of the Phoenix`, price: 100, currency: 'บาท', picture: 'static/pictures/HarryBook5.jpg'},
+        {id: 6, name: `Harry Potter and the Half-Blood Prince`, price: 100, currency: 'บาท', picture: 'static/pictures/HarryBook6.jpg'},
+        {id: 7, name: `Harry Potter and the Deathly Hallows`, price: 100, currency: 'บาท', picture: 'static/pictures/HarryBook7.jpg'}
       ],
-      cart: [
-        // {id: 1, name: `Harry Potter and the Philosopher's Stone`, price: 100, currency: 'บาท', amount: 1},
-        // {id: 2, name: `Harry Potter and the Chamber of Secrets`, price: 100, currency: 'บาท', amount: 2},
-        // {id: 3, name: `Harry Potter and the Prisoner of Azkaban`, price: 100, currency: 'บาท', amount: 3},
-        // {id: 4, name: `Harry Potter and the Goblet of Fire`, price: 100, currency: 'บาท', amount: 4},
-        // {id: 5, name: `Harry Potter and the Order of the Phoenix`, price: 100, currency: 'บาท', amount: 5},
-        // {id: 6, name: `Harry Potter and the Half-Blood Prince`, price: 100, currency: 'บาท', amount: 6},
-        // {id: 7, name: `Harry Potter and the Deathly Hallows`, price: 100, currency: 'บาท', amount: 7}
-      ]
+      cart: []
     }
   },
   methods: {
@@ -84,6 +77,11 @@ export default {
           {...newItem, amount: 1}
         ]
       }
+    },
+    removeFromCart (itemId) {
+      this.cart = this.cart.filter((item) => {
+        return item.id !== itemId
+      })
     }
   }
 }

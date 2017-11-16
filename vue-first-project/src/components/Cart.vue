@@ -1,16 +1,17 @@
 <template>
   <div class="container-cart">
     <header>
-      <h1>{{ sumNet }}</h1>
+      <h1>{{ calculateNet }}</h1>
     </header>
     <div class="body-cart">
       <div class="item" :key="'cart' + item.id" v-for="item in cart">
-        <img />
+        <img :src="item.picture"/>
         <div class="item-detail">
           <div class="text" :title="item.name">{{item.name}}</div>
           <div>
             <div>จำนวน {{item.amount}}</div>
             <div>ราคา {{item.price}} {{item.currency}}</div>
+            <button @click="removeFromCart(item.id)">ลบ</button>
           </div>
         </div>
       </div>
@@ -21,18 +22,34 @@
 
 <script>
 export default {
-  props: ['cart'],
+  props: ['cart', 'removeFromCart'],
   computed: {
-    sumNet () {
-      return this.cart.reduce((sum, item) => {
-        return sum + (item.price * item.amount)
+    calculateNet () {
+      const items = this.cart
+      let net = 0
+      const mostAmount = items.reduce((most, item) => {
+        return (item.amount > most) ? item.amount : most
       }, 0)
+      for (let round = 1; round <= mostAmount; round++) {
+        const filterItems = items.filter((item) => {
+          return item.amount >= round
+        })
+        const percentDiscount = (filterItems.length * 10) - 10
+        net += filterItems.reduce((result, item) => {
+          return result + (item.price - (item.price * (percentDiscount / 100)))
+        }, 0)
+      }
+      return net
     }
   }
 }
 </script>
 
 <style scoped>
+button {
+  cursor: pointer;
+}
+
 header {
   align-items: center;
   background: #1480E2;
